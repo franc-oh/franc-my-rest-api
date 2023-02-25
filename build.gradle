@@ -1,0 +1,63 @@
+buildscript {
+    ext {
+        springBootVersion = '2.7.9'
+        lombokVersion = '1.18.26'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.franc.app'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+    //implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.3.3.RELEASE'
+
+
+    compileOnly 'org.springframework.boot:spring-boot-devtools'
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+
+    //runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    runtimeOnly 'com.h2database:h2'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //testImplementation 'org.springframework.security:spring-security-test'
+
+
+
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+}
+
+test {
+    useJUnitPlatform()
+}
