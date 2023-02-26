@@ -1,0 +1,34 @@
+server:
+  port: 8091
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  config:
+    activate:
+      on-profile: "local"
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: membership
+    password: membership
+
+#  sql:
+#    init:
+#      data-locations: classpath:data.sql
+#      username: membership
+#      password: membership
+#      mode: always
+
+  ## JPA 관련 설정
+  jpa:
+    #defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+
+
+  logging:
+    level:
+      org.hibernate.SQL: debug
+      org.hibernate.type: trace
