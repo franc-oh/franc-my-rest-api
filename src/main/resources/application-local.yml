@@ -14,16 +14,22 @@ spring:
     username: membership
     password: membership
 
-#  sql:
-#    init:
-#      data-locations: classpath:data.sql
-#      username: membership
-#      password: membership
-#      mode: always
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  sql:
+    init:
+      data-locations: classpath:data.sql
+      username: membership
+      password: membership
+      mode: always
+      encoding: UTF-8
 
   ## JPA 관련 설정
   jpa:
-    #defer-datasource-initialization: true
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
 
